@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বিসিএস প্রস্তুতি কর্নার</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f1f5f9; /* Slate-100 */
+        }
+        .font-bangla {
+            font-family: 'Tiro Bangla', serif;
+        }
+        .subject-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .subject-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .card-icon {
+            font-size: 3rem; /* 48px */
+            line-height: 1;
+            margin-bottom: 1rem; /* 16px */
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #4f46e5, #818cf8);
+        }
+    </style>
+</head>
+<body class="bg-slate-100">
+
+    <header class="hero-section text-white text-center py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-bold font-bangla">বিসিএস প্রস্তুতি কর্নার</h1>
+            <p class="mt-4 text-lg md:text-xl text-indigo-200">আপনার বিসিএস জয়ের পথচলা শুরু হোক এখান থেকে।</p>
+            <p class="mt-2 text-md text-indigo-300">বিষয়ভিত্তিক প্রস্তুতি নিন, কুইজে অংশ নিন এবং নিজের অগ্রগতি যাচাই করুন।</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 md:py-16">
+        <h2 class="text-3xl font-bold text-center text-slate-800 mb-10 font-bangla">বিষয়সমূহ</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            
+            <a href="lessons/bangla.html" class="subject-card">
+                <div class="p-6 text-center">
+                    <div class="card-icon">📚</div>
+                    <h3 class="text-2xl font-bold text-slate-800 font-bangla">বাংলা</h3>
+                    <p class="text-slate-500 mt-2">ভাষা ও সাহিত্য</p>
+                </div>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
+            </a>
+
+            <a href="lessons/english.html" class="subject-card">
+                <div class="p-6 text-center">
+                    <div class="card-icon">✒️</div>
+                    <h3 class="text-2xl font-bold text-slate-800 font-bangla">English</h3>
+                    <p class="text-slate-500 mt-2">Language and Literature</p>
+                </div>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">Start Lessons &rarr;</div>
+            </a>
+
+            <a href="lessons/bangladesh.html" class="subject-card">
+                <div class="p-6 text-center">
+                    <div class="card-icon">🇧🇩</div>
+                    <h3 class="text-2xl font-bold text-slate-800 font-bangla">বাংলাদেশ বিষয়াবলী</h3>
+                    <p class="text-slate-500 mt-2">ইতিহাস, সংবিধান ও অর্থনীতি</p>
+                </div>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
+            </a>
+
+            <a href="lessons/international.html" class="subject-card">
+                <div class="p-6 text-center">
+                    <div class="card-icon">🌍</div>
+                    <h3 class="text-2xl font-bold text-slate-800 font-bangla">আন্তর্জাতিক বিষয়াবলী</h3>
+                    <p class="text-slate-500 mt-2">সংস্থা ও সাম্প্রতিক நிகழ்াবলী</p>
+                </div>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
+            </a>
+
+            <a href="lessons/math.html" class="subject-card">
+                <div class="p-6 text-center">
+                    <div class="card-icon">➗</div>
+                    <h3 class="text-2xl font-bold text-slate-800 font-bangla">গাণিতিক যুক্তি</h3>
+                    <p class="text-slate-500 mt-2">পাটিগণিত, বীজগণিত ও জ্যামিতি</p>
+                </div>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
+            </a>
+
+            <a href="lessons/mental-ability.html" class="subject-card">
+                <div class="p-6 text-center">
+                    <div class="card-icon">🧠</div>
+                    <h3 class="text-2xl font-bold text-slate-800 font-bangla">মানসিক দক্ষতা</h3>
+                    <p class="text-slate-500 mt-2">ভাষাগত ও যৌক্তিক বিশ্লেষণ</p>
+                </div>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
+            </a>
+            
+            <a href="lessons/science.html" class="subject-card">
+                <div class="p-6 text-center">
+                    <div class="card-icon">🔬</div>
+                    <h3 class="text-2xl font-bold text-slate-800 font-bangla">সাধারণ বিজ্ঞান</h3>
+                    <p class="text-slate-500 mt-2">পদার্থ, রসায়ন ও জীববিজ্ঞান</p>
+                </div>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
+            </a>
+
+            <a href="lessons/computer.html" class="subject-card">
+                <div class="p-6 text-center">
+                    <div class="card-icon">💻</div>
+                    <h3 class="text-2xl font-bold text-slate-800 font-bangla">কম্পিউটার ও তথ্যপ্রযুক্তি</h3>
+                    <p class="text-slate-500 mt-2">হার্ডওয়্যার, সফটওয়্যার ও নেটওয়ার্ক</p>
+                </div>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
+            </a>
+
+        </div>
+    </main>
+
+    <footer class="text-center py-8 bg-slate-800 text-slate-400">
+        <p>&copy; 2024 বিসিএস প্রস্তুতি কর্নার। সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+</body>
+</html>
