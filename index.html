@@ -20,15 +20,21 @@
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            border: 2px solid transparent;
         }
         .subject-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .subject-card.active {
+            border-color: #4f46e5; /* Indigo-600 */
+            box-shadow: 0 10px 15px -3px rgb(79 70 229 / 0.2), 0 4px 6px -4px rgb(79 70 229 / 0.2);
+            transform: translateY(-5px);
         }
         .card-icon {
             font-size: 3rem; /* 48px */
@@ -38,10 +44,31 @@
         .hero-section {
             background: linear-gradient(135deg, #4f46e5, #818cf8);
         }
+        /* Lesson container styles */
+        #lessons-display-area {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out, padding 0.5s ease;
+            padding: 0;
+        }
+        #lessons-display-area.open {
+            padding: 2rem 0;
+            max-height: 1000px; /* A large enough value */
+        }
+        .lesson-link {
+            transition: all 0.3s ease;
+            border-left: 4px solid #e5e7eb; /* Gray-200 */
+        }
+        .lesson-link:hover {
+            border-left-color: #4f46e5;
+            background-color: #eef2ff;
+            transform: translateX(5px);
+        }
     </style>
 </head>
 <body class="bg-slate-100">
 
+    <!-- Header / Hero Section -->
     <header class="hero-section text-white text-center py-20 px-4">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-4xl md:text-6xl font-bold font-bangla">বিসিএস প্রস্তুতি কর্নার</h1>
@@ -50,89 +77,224 @@
         </div>
     </header>
 
+    <!-- Main Content -->
     <main class="container mx-auto px-4 py-12 md:py-16">
         <h2 class="text-3xl font-bold text-center text-slate-800 mb-10 font-bangla">বিষয়সমূহ</h2>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <!-- Subject Cards Grid -->
+        <div id="subject-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             
-            <a href="lessons/bangla.html" class="subject-card">
+            <!-- বিষয় কার্ড (এগুলো এখন জাভাস্ক্রিপ্ট দিয়ে নিয়ন্ত্রণ করা হবে) -->
+            <div data-subject="bangla" class="subject-card cursor-pointer">
                 <div class="p-6 text-center">
                     <div class="card-icon">📚</div>
                     <h3 class="text-2xl font-bold text-slate-800 font-bangla">বাংলা</h3>
                     <p class="text-slate-500 mt-2">ভাষা ও সাহিত্য</p>
                 </div>
-                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
-            </a>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ তালিকা দেখুন &darr;</div>
+            </div>
 
-            <a href="lessons/english.html" class="subject-card">
+            <div data-subject="english" class="subject-card cursor-pointer">
                 <div class="p-6 text-center">
                     <div class="card-icon">✒️</div>
                     <h3 class="text-2xl font-bold text-slate-800 font-bangla">English</h3>
                     <p class="text-slate-500 mt-2">Language and Literature</p>
                 </div>
-                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">Start Lessons &rarr;</div>
-            </a>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">View Lessons &darr;</div>
+            </div>
 
-            <a href="lessons/bangladesh.html" class="subject-card">
+            <div data-subject="bangladesh" class="subject-card cursor-pointer">
                 <div class="p-6 text-center">
                     <div class="card-icon">🇧🇩</div>
                     <h3 class="text-2xl font-bold text-slate-800 font-bangla">বাংলাদেশ বিষয়াবলী</h3>
                     <p class="text-slate-500 mt-2">ইতিহাস, সংবিধান ও অর্থনীতি</p>
                 </div>
-                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
-            </a>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ তালিকা দেখুন &darr;</div>
+            </div>
 
-            <a href="lessons/international.html" class="subject-card">
+            <div data-subject="international" class="subject-card cursor-pointer">
                 <div class="p-6 text-center">
                     <div class="card-icon">🌍</div>
                     <h3 class="text-2xl font-bold text-slate-800 font-bangla">আন্তর্জাতিক বিষয়াবলী</h3>
                     <p class="text-slate-500 mt-2">সংস্থা ও সাম্প্রতিক நிகழ்াবলী</p>
                 </div>
-                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
-            </a>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ তালিকা দেখুন &darr;</div>
+            </div>
 
-            <a href="lessons/math.html" class="subject-card">
+            <div data-subject="math" class="subject-card cursor-pointer">
                 <div class="p-6 text-center">
                     <div class="card-icon">➗</div>
                     <h3 class="text-2xl font-bold text-slate-800 font-bangla">গাণিতিক যুক্তি</h3>
                     <p class="text-slate-500 mt-2">পাটিগণিত, বীজগণিত ও জ্যামিতি</p>
                 </div>
-                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
-            </a>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ তালিকা দেখুন &darr;</div>
+            </div>
 
-            <a href="lessons/mental-ability.html" class="subject-card">
+            <div data-subject="mental-ability" class="subject-card cursor-pointer">
                 <div class="p-6 text-center">
                     <div class="card-icon">🧠</div>
                     <h3 class="text-2xl font-bold text-slate-800 font-bangla">মানসিক দক্ষতা</h3>
                     <p class="text-slate-500 mt-2">ভাষাগত ও যৌক্তিক বিশ্লেষণ</p>
                 </div>
-                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
-            </a>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ তালিকা দেখুন &darr;</div>
+            </div>
             
-            <a href="lessons/science.html" class="subject-card">
+            <div data-subject="science" class="subject-card cursor-pointer">
                 <div class="p-6 text-center">
                     <div class="card-icon">🔬</div>
                     <h3 class="text-2xl font-bold text-slate-800 font-bangla">সাধারণ বিজ্ঞান</h3>
                     <p class="text-slate-500 mt-2">পদার্থ, রসায়ন ও জীববিজ্ঞান</p>
                 </div>
-                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
-            </a>
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ তালিকা দেখুন &darr;</div>
+            </div>
 
-            <a href="lessons/computer.html" class="subject-card">
+            <div data-subject="computer" class="subject-card cursor-pointer">
                 <div class="p-6 text-center">
                     <div class="card-icon">💻</div>
                     <h3 class="text-2xl font-bold text-slate-800 font-bangla">কম্পিউটার ও তথ্যপ্রযুক্তি</h3>
                     <p class="text-slate-500 mt-2">হার্ডওয়্যার, সফটওয়্যার ও নেটওয়ার্ক</p>
                 </div>
-                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ শুরু করুন &rarr;</div>
-            </a>
-
+                <div class="bg-slate-50 text-center py-3 font-semibold text-indigo-600">পাঠ তালিকা দেখুন &darr;</div>
+            </div>
         </div>
+
+        <!-- Lessons Display Area (This will be populated by JavaScript) -->
+        <div id="lessons-display-area">
+            <div id="lessons-content" class="max-w-3xl mx-auto">
+                <!-- Dynamic content goes here -->
+            </div>
+        </div>
+
     </main>
 
+    <!-- Footer -->
     <footer class="text-center py-8 bg-slate-800 text-slate-400">
         <p>&copy; 2024 বিসিএস প্রস্তুতি কর্নার। সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
 
+    <script>
+        // --- DATA FOR LESSONS ---
+        // You can easily add more lessons or subjects here
+        const lessonsData = {
+            bangla: {
+                title: 'বাংলা',
+                lessons: [
+                    { title: 'লেসন-১: প্রাচীন বাংলার ইতিহাস কুইজ', description: 'এই পাঠে প্রাচীন বাংলার ইতিহাস সম্পর্কিত গুরুত্বপূর্ণ প্রশ্ন ও উত্তর পাবেন।', url: 'test.html' },
+                    { title: 'লেসন-২: বাংলা সাহিত্যের যুগবিভাগ', description: 'প্রাচীন, মধ্য ও আধুনিক যুগের বিস্তারিত আলোচনা।', url: '#' },
+                    { title: 'লেসন-৩: সমার্থক শব্দ', description: 'প্রয়োজনীয় সমার্থক শব্দের তালিকা ও অনুশীলন।', url: '#' },
+                ]
+            },
+            english: {
+                title: 'English',
+                lessons: [
+                    { title: 'Lesson 1: Parts of Speech Quiz', description: 'Test your knowledge on nouns, verbs, adjectives etc.', url: '#' },
+                    { title: 'Lesson 2: Tense and Narration', description: 'A deep dive into English grammar.', url: '#' },
+                ]
+            },
+            bangladesh: {
+                title: 'বাংলাদেশ বিষয়াবলী',
+                lessons: [
+                    { title: 'লেসন-১: মুক্তিযুদ্ধ', description: 'বাংলাদেশের মুক্তিযুদ্ধের বিস্তারিত ইতিহাস।', url: '#' },
+                ]
+            },
+            international: {
+                title: 'আন্তর্জাতিক বিষয়াবলী',
+                lessons: [] // Empty for now
+            },
+            math: {
+                title: 'গাণিতিক যুক্তি',
+                lessons: []
+            },
+            'mental-ability': {
+                title: 'মানসিক দক্ষতা',
+                lessons: []
+            },
+            science: {
+                title: 'সাধারণ বিজ্ঞান',
+                lessons: []
+            },
+            computer: {
+                title: 'কম্পিউটার ও তথ্যপ্রযুক্তি',
+                lessons: []
+            }
+        };
+
+        // --- DOM ELEMENTS ---
+        const subjectCards = document.querySelectorAll('.subject-card');
+        const lessonsDisplayArea = document.getElementById('lessons-display-area');
+        const lessonsContent = document.getElementById('lessons-content');
+        let currentlyOpenSubject = null;
+
+        // --- FUNCTIONS ---
+        subjectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const subjectKey = card.dataset.subject;
+
+                // If the clicked card is already open, close it
+                if (currentlyOpenSubject === subjectKey) {
+                    closeLessons();
+                    return;
+                }
+                
+                // If another card is open, close it before opening the new one
+                if (currentlyOpenSubject) {
+                    closeLessons();
+                }
+                
+                // Open the new one
+                openLessons(subjectKey);
+            });
+        });
+        
+        function openLessons(subjectKey) {
+            const subjectData = lessonsData[subjectKey];
+            if (!subjectData) return;
+
+            // Mark the current card as active
+            document.querySelector(`[data-subject="${subjectKey}"]`).classList.add('active');
+            currentlyOpenSubject = subjectKey;
+
+            let contentHtml = `
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-xl relative">
+                    <button onclick="closeLessons()" class="absolute top-4 right-4 text-2xl text-slate-500 hover:text-red-500 transition">&times;</button>
+                    <h2 class="text-3xl font-bold text-slate-800 border-b pb-4 mb-6 font-bangla">${subjectData.title}</h2>
+                    <div class="space-y-4">
+            `;
+
+            if (subjectData.lessons.length > 0) {
+                subjectData.lessons.forEach(lesson => {
+                    contentHtml += `
+                        <a href="${lesson.url}" class="block lesson-link bg-slate-50 p-4 rounded-md">
+                            <h3 class="font-semibold text-lg text-slate-800">${lesson.title}</h3>
+                            <p class="text-slate-500 text-sm mt-1">${lesson.description}</p>
+                        </a>
+                    `;
+                });
+            } else {
+                contentHtml += `<p class="text-slate-500 text-center py-8">এই বিষয়ের জন্য এখনো কোনো পাঠ যুক্ত করা হয়নি।</p>`;
+            }
+
+            contentHtml += `</div></div>`;
+            lessonsContent.innerHTML = contentHtml;
+            lessonsDisplayArea.classList.add('open');
+
+            // Scroll to the lessons area for better visibility on small screens
+            lessonsDisplayArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function closeLessons() {
+            if (!currentlyOpenSubject) return;
+            
+            document.querySelector(`[data-subject="${currentlyOpenSubject}"]`).classList.remove('active');
+            lessonsDisplayArea.classList.remove('open');
+            currentlyOpenSubject = null;
+            
+            // Clear the content after the animation is done
+            setTimeout(() => {
+                lessonsContent.innerHTML = '';
+            }, 500); // Should match the transition duration
+        }
+
+    </script>
 </body>
 </html>
